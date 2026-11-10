@@ -1,0 +1,703 @@
+/* ==========================================================================
+   🎨 DESIGN SYSTEM COMPLETO & RESPONSIVO - MINICURSO UNIVERSITÁRIO
+   TODA a estilização, grid, fontes, animações e responsividade estão AQUI!
+   O arquivo index.html fica 100% limpo, sem nenhuma classe confusa.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --bg-dark: #020617;
+  --card-bg: rgba(15, 23, 42, 0.75);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --text-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  color: #f8fafc;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Container centralizado da página */
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Espaçador entre as seções */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  padding: 40px 0 80px 0;
+}
+
+/* ==========================================================================
+   ✨ ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes blobMotion {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(25px, -35px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.35; filter: blur(20px); }
+  50% { opacity: 0.75; filter: blur(30px); }
+}
+
+/* Luzes Neon de Fundo */
+.background-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  filter: blur(80px);
+  animation: blobMotion 8s infinite ease-in-out;
+}
+
+.blob-1 { top: 5%; left: 15%; background: rgba(99, 102, 241, 0.22); }
+.blob-2 { top: 40%; right: 10%; background: rgba(168, 85, 247, 0.2); animation-delay: 2s; }
+.blob-3 { bottom: 10%; left: 25%; background: rgba(56, 189, 248, 0.16); animation-delay: 4s; }
+
+/* ==========================================================================
+   🧭 NAVBAR
+   ========================================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.navbar .container {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-brand .ponto {
+  color: #818cf8;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   🚀 SEÇÃO HERO (APRESENTAÇÃO)
+   ========================================================================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  width: fit-content;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #34d399;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulseGlow 1.5s infinite;
+}
+
+.hero-titulo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.destaque {
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-cargo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.hero-bio {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #94a3b8;
+  max-width: 600px;
+}
+
+.botoes-grupo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   🔘 BOTÕES
+   ========================================================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -5px rgba(99, 102, 241, 0.5);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.85);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   🖼️ CARD DO AVATAR FLUTUANTE
+   ========================================================================== */
+
+.hero-avatar {
+  position: relative;
+  width: 320px;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  border-radius: 30px;
+  filter: blur(20px);
+  opacity: 0.4;
+  animation: pulseGlow 3s infinite ease-in-out;
+  z-index: -1;
+}
+
+.avatar-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px;
+  text-align: center;
+  animation: floatCard 4s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avatar-foto {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 2px solid rgba(129, 140, 248, 0.4);
+}
+
+.avatar-nome {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.avatar-subtitulo {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #818cf8;
+  margin-top: 3px;
+}
+
+.avatar-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  padding-top: 14px;
+  border-top: 1px solid var(--card-border);
+}
+
+.avatar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   🪟 CARDS GENÉRICOS (GLASSMORPHISM)
+   ========================================================================== */
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.secao-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.secao-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #818cf8;
+}
+
+.secao-titulo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.secao-descricao {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+/* Grid de Formações / Conquistas */
+.conquistas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.conquista-item {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.conquista-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.conquista-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   🛠️ GRID DE HABILIDADES (SKILLS)
+   ========================================================================== */
+
+.skills-secao {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.skill-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  transition: all 0.25s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.skill-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+.skill-nome {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.skill-info {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   💼 GRID DE PROJETOS
+   ========================================================================== */
+
+.projetos-secao {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(129, 140, 248, 0.45);
+}
+
+.project-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.project-tag {
+  background: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.project-titulo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-top: 8px;
+}
+
+.project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tech-badge {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--card-border);
+  color: #cbd5e1;
+}
+
+.project-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+}
+
+.project-link {
+  color: #818cf8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: #a5b4fc;
+}
+
+.project-status {
+  font-size: 0.75rem;
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   📬 SEÇÃO DE CONTATO
+   ========================================================================== */
+
+.contato-card {
+  text-align: center;
+  align-items: center;
+  padding: 48px 24px;
+}
+
+.contato-card .secao-titulo {
+  font-size: 2.2rem;
+}
+
+.contato-card .secao-descricao {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contato-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   🦶 RODAPÉ
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   📱 RESPONSIVIDADE TOTAL (CELULAR & TABLET)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  
+  .hero-text {
+    align-items: center;
+  }
+
+  .hero-titulo {
+    font-size: 2.5rem;
+  }
+
+  .conquistas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projetos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none; /* Deixa apenas a logo e o botão de conectar no mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-avatar {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-titulo {
+    font-size: 2rem;
+  }
+
+  .hero-cargo {
+    font-size: 1.1rem;
+  }
+
+  .botoes-grupo, .contato-botoes {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
+
+  .conquistas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .contato-card .secao-titulo {
+    font-size: 1.7rem;
+  }
+}
